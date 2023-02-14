@@ -4,4 +4,4 @@ repos:
     hooks:
       - id: helm-docs
         args:
-          - --chart-search-root=backend
+          - --chart-search-root=charts
