@@ -1,0 +1,181 @@
+# -- Override for resource names 
+nameOverride: ""
+# -- Override for the full resource. (`"nestjs.fullname"`)
+fullnameOverride: ""
+
+# -- The number of pod replicas
+replicaCount: 1
+
+global:
+  image:
+    # -- Container image repository
+    repository: backend
+    # -- Container pull policy
+    pullPolicy: IfNotPresent
+    # -- Container image tag. The default is the chart appVersion.
+    tag: ""
+  
+  # -- Override for the full resource. (`"polygon-edge.fullname"`)
+  imagePullSecrets: []
+  # -- PostgreSQL subchart
+  postgresql:
+    auth:
+      # -- PostgreSQL username
+      username: backend
+      # -- PostgreSQL password
+      password: backend
+      # -- PostgreSQL database name
+      database: backend
+    service:
+      ports:
+        # -- # -- PostgreSQL port
+        postgresql: 5432
+
+  # -- Additional pod annotations
+  podAnnotations: {}
+  # -- Additional pod security context
+  podSecurityContext: {}
+  # -- Security context
+  securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # fsGroup: 2000
+
+# -- Service account
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service port
+  port: 3030
+  # -- Service port name
+  namedPort: backend
+
+ingress:
+  # -- Enable ingress
+  enabled: false
+  # -- Specify ingress class name
+  className: "alb"
+  # -- Ingress annotations (`kubernetes.io/ingress.class: nginx`, `kubernetes.io/tls-acme: "true"`)
+  annotations: {}
+  hosts:
+      # -- Fully qualified domain name
+    - host: nestjs-example.local
+      paths:
+          # -- Root path
+        - path: /
+          # -- Path prefix type
+          pathType: Prefix
+   # -- A list of ingress TLS configuration
+  tls: []
+
+# -- Pod resources
+resources: {}
+
+# -- Autoscaling
+autoscaling:
+  # -- Enable autoscaling
+  enabled: false
+  # -- Minimum replicas
+  minReplicas: 1
+  # -- Maximum replicas
+  maxReplicas: 100
+  # -- CPU utilisation which will trigger autoscailing
+  targetCPUUtilizationPercentage: 80
+  # -- RAM utilisation which will trigger autoscailing
+  targetMemoryUtilizationPercentage: 80
+
+# -- Node selector
+nodeSelector: {}
+# -- Tolerations
+tolerations: []
+# -- Affinity
+affinity: {}
+
+# -- Backend application config
+backend:
+  config:
+    # -- Application name
+    name: nestjs-backend
+    # -- NodeJS environment
+    nodeEnv: local
+
+    # -- XRay
+    xray:
+      # -- Enable XRay
+      enabled: false
+  localDatabase:
+    # -- Enable local postgresql database
+    enabled: false
+  
+  # -- Remote database settings
+  remoteDatabase:
+    # -- db host
+    host:
+    # -- db port
+    port:
+    # -- db username
+    username:
+    # -- db password
+    password:
+    # -- db name
+    name:
+  
+  # -- Blockchain related settings
+  blockchain:
+    # -- JSONRpc API endpoint
+    jsonRpc: ""
+    # -- TUSD SmartContract address
+    tusdSCAddress: ""
+    # -- MTCI SmartContract address
+    mtciSCAddress: ""
+    # -- MTCI holding wallet address
+    mtciHoldingWalletAddress: ""
+    # -- Operator private key
+    operatorPrivateKey: ""
+    # -- Stable coin wallet private key
+    stableCoinWalletPrivateKey: ""
+
+  # -- Liveness probe
+  livenessProbe:
+    # -- Number of seconds after the container has started before [probe] is initiated
+    initialDelaySeconds: 10
+    # -- How often (in seconds) to perform the [probe]
+    periodSeconds: 10
+    # -- Number of seconds after which the [probe] times out
+    timeoutSeconds: 1
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+    successThreshold: 1
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+    failureThreshold: 3
+  # -- Readiness probe
+  readinessProbe:
+    # -- Number of seconds after the container has started before [probe] is initiated
+    initialDelaySeconds: 10
+    # -- How often (in seconds) to perform the [probe]
+    periodSeconds: 10
+    # -- Number of seconds after which the [probe] times out
+    timeoutSeconds: 1
+    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+    successThreshold: 1
+    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+    failureThreshold: 3
+
+# -- PostgresSQL subchart settings
+postgresql:
+# -- Database name override
+  nameOverride: nestjs-backend
+  persistence:
+    # -- Permanent volume size
+    size: 10Gi

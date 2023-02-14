@@ -1,0 +1,21 @@
+apiVersion: v2
+name: nestjs
+description: NestJS chart for Trips backend
+icon: "https://tripsplatform.io/favicon.svg"
+type: application
+version: 0.1.0
+appVersion: "0.0.1"
+maintainers:
+  - name: ZeljkoBenovic
+    url: https://github.com/ZeljkoBenovic
+    email: zeljko@zeljkobenovic.com
+keywords:
+  - web3
+  - trips
+  - nestjs
+
+dependencies:
+  - name: postgresql
+    version: 12.1.x
+    repository: https://charts.bitnami.com/bitnami
+    condition: backend.localDatabase.enabled

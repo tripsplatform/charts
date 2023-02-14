@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nestjs.fullname" . }}
+  labels:
+    {{- include "nestjs.labels" (dict "context" . "component" .Values.backend.config.name "name" .Values.backend.config.name) | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: backend-http
+      port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.namedPort }}
+  selector:
+    {{- include "nestjs.selectorLabels" (dict "context" . "component" .Values.backend.config.name "name" .Values.backend.config.name) | nindent 4 }}
