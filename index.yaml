@@ -23,6 +23,6 @@ entries:
     name: nestjs
     type: application
     urls:
-    - https://tripsplatform.github.io/charts/nestjs-0.1.0.tgz
+    - https://github.com/tripsplatform/charts/releases/download/nestjs-0.1.0/nestjs-0.1.0.tgz
     version: 0.1.0
 generated: "2023-02-14T23:25:12.783041279+01:00"
