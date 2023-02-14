@@ -2,6 +2,13 @@
 nameOverride: ""
 # -- Override for the full resource. (`"nestjs.fullname"`)
 fullnameOverride: ""
+# -- Override the Kubernetes version
+kubeVersionOverride: ""
+
+# -- Additional Ingress
+apiVersionOverrides:
+  # -- Override the ingress API version
+  ingress: "" # networking.k8s.io/v1beta1
 
 # -- The number of pod replicas
 replicaCount: 1
@@ -14,6 +21,9 @@ global:
     pullPolicy: IfNotPresent
     # -- Container image tag. The default is the chart appVersion.
     tag: ""
+
+  # -- CORS origin 
+  origin: "*"
   
   # -- Override for the full resource. (`"polygon-edge.fullname"`)
   imagePullSecrets: []
@@ -65,19 +75,22 @@ service:
 ingress:
   # -- Enable ingress
   enabled: false
-  # -- Specify ingress class name
-  className: "alb"
-  # -- Ingress annotations (`kubernetes.io/ingress.class: nginx`, `kubernetes.io/tls-acme: "true"`)
+  # -- The annotations for validator JSONRPC ingress
   annotations: {}
-  hosts:
-      # -- Fully qualified domain name
-    - host: nestjs-example.local
-      paths:
-          # -- Root path
-        - path: /
-          # -- Path prefix type
-          pathType: Prefix
-   # -- A list of ingress TLS configuration
+  # -- The labels for validator JSONRPC ingress
+  lables : {}
+  # -- The ingress class name
+  ingressClassName: ""
+  # -- A list of ingress hosts
+  hosts: []
+  # -- A list of ingress paths
+  paths: 
+    - /
+  # -- The ingress path type
+  pathType: Prefix
+  # -- Extra ingress paths
+  extraPaths: []
+  # -- A list of ingress TLS configuration
   tls: []
 
 # -- Pod resources
@@ -122,15 +135,15 @@ backend:
   # -- Remote database settings
   remoteDatabase:
     # -- db host
-    host:
+    host: ""
     # -- db port
-    port:
+    port: ""
     # -- db username
-    username:
+    username: ""
     # -- db password
-    password:
+    password: ""
     # -- db name
-    name:
+    name: ""
   
   # -- Blockchain related settings
   blockchain:

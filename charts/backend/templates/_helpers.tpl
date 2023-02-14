@@ -66,12 +66,23 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-Create https fqdn name
+Return the appropriate apiVersion for ingress
 */}}
-{{- define "nestjs.backend-url" -}}
-{{- $host := "" -}}
-{{- with (index .Values.ingress.hosts 0)  -}}
-{{- $host = .host -}}
+{{- define "nestjs.apiVersion.ingress" -}}
+{{- if .Values.apiVersionOverrides.ingress -}}
+{{- print .Values.apiVersionOverrides.ingress -}}
+{{- else if semverCompare "<1.14-0" (include "nestjs.kubeVersion" $) -}}
+{{- print "extensions/v1beta1" -}}
+{{- else if semverCompare "<1.19-0" (include "nestjs.kubeVersion" $) -}}
+{{- print "networking.k8s.io/v1beta1" -}}
+{{- else -}}
+{{- print "networking.k8s.io/v1" -}}
 {{- end -}}
-{{- print "https://" $host -}}
+{{- end -}}
+
+{{/*
+Return the target Kubernetes version
+*/}}
+{{- define "nestjs.kubeVersion" -}}
+  {{- default .Capabilities.KubeVersion.Version .Values.kubeVersionOverride }}
 {{- end -}}

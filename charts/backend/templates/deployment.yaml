@@ -60,7 +60,7 @@ spec:
             - name: SERVICE_NAME
               value: {{ include "nestjs.fullname" . }}
             - name: ORIGIN
-              value: {{ include "nestjs.backend-url" . }}
+              value: {{ .Values.global.origin | quote }}
             - name: NODE_ENV
               value: {{ .Values.backend.config.nodeEnv }}
             - name: TYPEORM_HOST
