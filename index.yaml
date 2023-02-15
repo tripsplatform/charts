@@ -3,6 +3,30 @@ entries:
   nestjs:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2023-02-15T16:32:30.434496856Z"
+    dependencies:
+    - condition: backend.localDatabase.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.x
+    description: NestJS chart for Trips backend
+    digest: cded2ba2ecb9a618d139ed84c0a382a3a7e034e92ad8ecc0b071996073fff60b
+    icon: https://tripsplatform.io/favicon.svg
+    keywords:
+    - web3
+    - trips
+    - nestjs
+    maintainers:
+    - email: zeljko@zeljkobenovic.com
+      name: ZeljkoBenovic
+      url: https://github.com/ZeljkoBenovic
+    name: nestjs
+    type: application
+    urls:
+    - https://github.com/tripsplatform/charts/releases/download/nestjs-0.1.2/nestjs-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2023-02-14T23:15:36.892425639Z"
     dependencies:
     - condition: backend.localDatabase.enabled
@@ -49,4 +73,4 @@ entries:
     urls:
     - https://github.com/tripsplatform/charts/releases/download/nestjs-0.1.0/nestjs-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-14T23:15:36.892431839Z"
+generated: "2023-02-15T16:32:30.434512057Z"
