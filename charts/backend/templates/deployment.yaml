@@ -108,7 +108,7 @@ spec:
             - name: {{ $ref | upper }}_{{ $key | upper }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "nestjs.fullname" $root }}-{{ $ref }}
+                  name: {{ template "nestjs.fullname" $root }}-{{ $ref | camelcase | kebabcase }}
                   key: {{ $key }}
             {{- end }}
             {{- end }}
