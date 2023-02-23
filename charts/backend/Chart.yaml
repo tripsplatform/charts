@@ -3,7 +3,7 @@ name: nestjs
 description: NestJS chart for Trips backend
 icon: "https://tripsplatform.io/favicon.svg"
 type: application
-version: 0.1.2
+version: 0.1.3
 appVersion: "0.1.0"
 maintainers:
   - name: ZeljkoBenovic
