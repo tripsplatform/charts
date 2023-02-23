@@ -3,12 +3,15 @@ name: nestjs
 description: NestJS chart for Trips backend
 icon: "https://tripsplatform.io/favicon.svg"
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "0.0.1"
 maintainers:
   - name: ZeljkoBenovic
     url: https://github.com/ZeljkoBenovic
     email: zeljko@zeljkobenovic.com
+  - name: ArandjelSarenac
+    url: https://github.com/big-kahuna-burger
+    email: arandjel.sarenac@mvpworkshop.co
 keywords:
   - web3
   - trips
