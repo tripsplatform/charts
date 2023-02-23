@@ -90,18 +90,18 @@ spec:
                   key: dbDatabaseName
             - name: XRAY_ENABLED
               value: {{ .Values.backend.xray }}
-            - name: JSON_RPC_URL
-              value: {{ .Values.backend.blockchain.jsonRpc }}
-            - name: TUSD_SMART_CONTRACT_ADDRESS
-              value: {{ .Values.backend.blockchain.tusdSCAddress }}
-            - name: MTCI_SMART_CONTRACT_ADDRESS
-              value: {{ .Values.backend.blockchain.mtciSCAddress }}
-            - name: MTCI_HOLDING_WALLET_ADDRESS
-              value: {{ .Values.backend.blockchain.mtciHoldingWalletAddress }}
-            - name: OPERATOR_PRIVATE_KEY
-              value: {{ .Values.backend.blockchain.operatorPrivateKey }}
-            - name: STABLECOIN_WALLET_PRIVATE_KEY
-              value: {{ .Values.backend.blockchain.stableCoinWalletPrivateKey }}
+            # - name: JSON_RPC_URL
+            #   value: {{ .Values.backend.blockchain.jsonRpc }}
+            # - name: TUSD_SMART_CONTRACT_ADDRESS
+            #   value: {{ .Values.backend.blockchain.tusdSCAddress }}
+            # - name: MTCI_SMART_CONTRACT_ADDRESS
+            #   value: {{ .Values.backend.blockchain.mtciSCAddress }}
+            # - name: MTCI_HOLDING_WALLET_ADDRESS
+            #   value: {{ .Values.backend.blockchain.mtciHoldingWalletAddress }}
+            # - name: OPERATOR_PRIVATE_KEY
+            #   value: {{ .Values.backend.blockchain.operatorPrivateKey }}
+            # - name: STABLECOIN_WALLET_PRIVATE_KEY
+            #   value: {{ .Values.backend.blockchain.stableCoinWalletPrivateKey }}
             {{- $root := . }}
             {{- range $ref, $values := .Values.backend.secrets }}
             {{- range $key, $value := $values }}
