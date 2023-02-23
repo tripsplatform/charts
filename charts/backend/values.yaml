@@ -105,11 +105,12 @@ affinity: {}
 
 # -- Backend application config
 backend:
-  secrets:
-    test:
-      key: 123 # should be available as env var TEST_KEY=123
-    xray:
-      enabled: true # should override xray enabled
+  secrets: {}
+    # Example ->
+    # test:
+    #   key: 123 # should be available as env var TEST_KEY=123
+    # xray:
+    #   enabled: true # should override XRAY_ENABLED
   config:
     # -- Application name
     name: nestjs-backend
