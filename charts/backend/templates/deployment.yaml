@@ -102,6 +102,16 @@ spec:
               value: {{ .Values.backend.blockchain.operatorPrivateKey }}
             - name: STABLECOIN_WALLET_PRIVATE_KEY
               value: {{ .Values.backend.blockchain.stableCoinWalletPrivateKey }}
+            {{- $root := . }}
+            {{- range $ref, $values := .Values.backend.secrets }}
+            {{- range $key, $value := $values }}
+            - name: {{ $ref | upper }}_{{ $key | upper }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nestjs.fullname" $root }}-{{ $ref }}
+                  key: {{ $key }}
+            {{- end }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /health
